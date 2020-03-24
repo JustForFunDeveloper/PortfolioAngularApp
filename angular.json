@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "PortfolioAngularApp"
+    }
+  },
+  "defaultProject": "PortfolioAngularApp",
+  "cli": {
+    "analytics": "c001d0cf-bcdf-46fb-a828-3ed4fe482d5a"
+  }
 }
