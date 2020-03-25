@@ -14,6 +14,9 @@ export class RecipeListComponent implements OnInit {
     new Recipe('Spaghetti',
       'This is a description2',
       'https://www.gutekueche.at/img/rezept/3610/spaghetti-puttanesca.png'),
+    new Recipe('Züricher Geschnetzeltes vom Schwein mit Spätzle',
+      'This is a description2',
+      'https://www.allekochen.com/wp-content/uploads/2019/01/Z%C3%BCricher-Geschnetzeltes-vom-Schwein-mit-Sp%C3%A4tzle01.jpg'),
   ];
 
   @Output()
