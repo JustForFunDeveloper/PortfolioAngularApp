@@ -1,27 +1,19 @@
-# PortfolioAngularApp
+# Portfolio Angular App
+This project is used for educational purposes only.</br>
+It's based on a popular [Udemy Course for Angular 9](https://www.udemy.com/course/the-complete-guide-to-angular-2/).
+Since it's a great course and it's using pretty much all techniques from Angular i decided to base a small Portfolio App on it.
 
+## Libraries
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.7.
 
-## Development server
+## Issues
+[![](https://img.shields.io/github/issues-raw/JustForFunDeveloper/PortfolioAngularApp.svg?style=flat-square)](https://github.com/JustForFunDeveloper/PortfolioAngularApp/issues?q=is%3Aopen+is%3Aissue)
+[![](https://img.shields.io/github/issues-closed-raw/JustForFunDeveloper/PortfolioAngularApp.svg?style=flat-square)](https://github.com/JustForFunDeveloper/PortfolioAngularApp/issues?q=is%3Aissue+is%3Aclosed)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## GitHub Pages
+This project is also Hosted on the GitHub Pages and can be viewed here =>
+[<b>https://justforfundeveloper.github.io/PortfolioAngularApp/</b>](https://justforfundeveloper.github.io/PortfolioAngularApp/)
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Releases
+Find the latest release here =>
+[<b>Release</b>](https://github.com/JustForFunDeveloper/PortfolioAngularApp/releases)
