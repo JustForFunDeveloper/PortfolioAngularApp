@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data} from '@angular/router';
 
 @Component({
@@ -9,7 +9,8 @@ import {ActivatedRoute, Data} from '@angular/router';
 export class ErrorPageComponent implements OnInit {
   errorMessage: string;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.route.data.subscribe((data: Data) => {
