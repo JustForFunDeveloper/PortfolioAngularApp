@@ -2,11 +2,14 @@ import {Injectable} from '@angular/core';
 import {Recipe} from '../model/recipe.model';
 import {Ingredient} from '../../shared/models/ingredient.model';
 import {ShoppingListService} from '../../shopping-list/services/shopping-list.service';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeListService {
+  recipesChanged = new Subject<Recipe[]>();
+
   private recipes: Recipe[] = [
     new Recipe('Steak',
       'This is a description',
@@ -27,9 +30,11 @@ export class RecipeListService {
       'https://www.allekochen.com/wp-content/uploads/2019/01/Z%C3%BCricher-Geschnetzeltes-vom-Schwein-mit-Sp%C3%A4tzle01.jpg',
       [
         new Ingredient('Sausage', 12),
-        new Ingredient('Sauerkraut', 1),
-        new Ingredient('Potato', 10)]),
+        new Ingredient('Sauerkraut', 1)]),
   ];
+
+  constructor(private shoppingListService: ShoppingListService) {
+  }
 
   getRecipes() {
     return this.recipes.slice();
@@ -39,10 +44,22 @@ export class RecipeListService {
     return this.recipes[id];
   }
 
-  constructor(private shoppingListService: ShoppingListService) {
-  }
-
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
     this.shoppingListService.addIngredients(ingredients);
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  updateRecipe(id: number, recipe: Recipe) {
+    this.recipes[id] = recipe;
+    this.recipesChanged.next(this.recipes.slice());
+  }
+
+  deleteRecipe(id: number) {
+    this.recipes.splice(id, 1);
+    this.recipesChanged.next(this.recipes.slice());
   }
 }
