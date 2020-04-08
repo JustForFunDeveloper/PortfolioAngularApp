@@ -35,7 +35,10 @@ export class ShoppingListService {
       }
     }
     if (!itemExists) {
-      this.ingredients.push(ingredient);
+      const newIngredient: Ingredient = new Ingredient(
+        ingredient.name,
+        ingredient.amount);
+      this.ingredients.push(newIngredient);
     }
     this.ingredientsChanged.next(this.ingredients);
   }

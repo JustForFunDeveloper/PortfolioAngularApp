@@ -44,10 +44,6 @@ export class RecipeListService {
     return this.recipes[id];
   }
 
-  addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingListService.addIngredients(ingredients);
-  }
-
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
     this.recipesChanged.next(this.recipes.slice());
@@ -61,5 +57,9 @@ export class RecipeListService {
   deleteRecipe(id: number) {
     this.recipes.splice(id, 1);
     this.recipesChanged.next(this.recipes.slice());
+  }
+
+  addIngredientsToShoppingList(ingredients: Ingredient[]) {
+    this.shoppingListService.addIngredients(ingredients);
   }
 }
