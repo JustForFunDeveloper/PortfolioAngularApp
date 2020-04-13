@@ -25,14 +25,17 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-    return  this.http.get<Recipe[]>('https://j4f-portfolioapp.firebaseio.com/recipes.json')
-      .pipe(map(recipes => {
-        return recipes.map(recipe => {
-          return {...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []};
-        });
-      }), tap( recipes => {
-        this.recipeListService.setRecipes(recipes);
-      }));
+    return this.http.get<Recipe[]>('https://j4f-portfolioapp.firebaseio.com/recipes.json?')
+      .pipe(
+        map(recipes => {
+          return recipes.map(recipe => {
+            return {...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []};
+          });
+        }),
+        tap(recipes => {
+          this.recipeListService.setRecipes(recipes);
+        })
+      );
   }
 
   storeShoppingList() {
