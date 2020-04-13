@@ -15,6 +15,9 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
 import {ErrorPageComponent} from './error-page/error-page.component';
 import {RecipeStartComponent} from './recipes/recipe-start/recipe-start.component';
 import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
+import {HttpClientModule} from '@angular/common/http';
+import {AuthComponent} from './auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +32,15 @@ import {RecipeEditComponent} from './recipes/recipe-edit/recipe-edit.component';
     DropdownDirective,
     ErrorPageComponent,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
