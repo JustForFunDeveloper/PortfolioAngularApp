@@ -1,6 +1,5 @@
 import {AppComponent} from './app.component';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
 import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
@@ -8,25 +7,25 @@ import {AppRoutingModule} from './app-routing/app-routing.module';
 import {RecipesModule} from './recipes/recipes.module';
 import {ShoppingListModule} from './shopping-list/shopping-list.module';
 import {SharedModule} from './shared/shared.module';
+import {AuthModule} from './auth/auth.module';
 
 import {HeaderComponent} from './header/header.component';
-import {AuthComponent} from './auth/auth.component';
 
 import {AuthInterceptorService} from './auth/services/auth-interceptor.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    AuthComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     RecipesModule,
     ShoppingListModule,
+    AuthModule,
     SharedModule
   ],
   providers: [
