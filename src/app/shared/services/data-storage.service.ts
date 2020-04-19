@@ -6,6 +6,7 @@ import {ShoppingListService} from '../../shopping-list/services/shopping-list.se
 import {Ingredient} from '../models/ingredient.model';
 import {map, tap} from 'rxjs/operators';
 
+// TODO: replace the url's with environment variables
 @Injectable({
   providedIn: 'root'
 })
@@ -19,9 +20,7 @@ export class DataStorageService {
   storeRecipes() {
     const recipes = this.recipeListService.getRecipes();
     this.http.put('https://j4f-portfolioapp.firebaseio.com/recipes.json', recipes)
-      .subscribe(response => {
-        console.log(response);
-      });
+      .subscribe();
   }
 
   fetchRecipes() {
@@ -41,9 +40,7 @@ export class DataStorageService {
   storeShoppingList() {
     const recipes = this.shoppingListService.getIngredients();
     this.http.put('https://j4f-portfolioapp.firebaseio.com/shoppingList.json', recipes)
-      .subscribe(response => {
-        console.log(response);
-      });
+      .subscribe();
   }
 
   fetchShoppingList() {
