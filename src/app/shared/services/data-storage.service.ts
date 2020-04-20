@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {RecipeListService} from '../../recipes/services/recipe-list.service';
 import {Recipe} from '../../recipes/model/recipe.model';
-import {ShoppingListService} from '../../shopping-list/services/shopping-list.service';
-import {Ingredient} from '../models/ingredient.model';
 import {map, tap} from 'rxjs/operators';
 
 // TODO: replace the url's with environment variables
@@ -13,8 +11,7 @@ import {map, tap} from 'rxjs/operators';
 export class DataStorageService {
 
   constructor(private http: HttpClient,
-              private recipeListService: RecipeListService,
-              private shoppingListService: ShoppingListService) {
+              private recipeListService: RecipeListService) {
   }
 
   storeRecipes() {
@@ -35,18 +32,5 @@ export class DataStorageService {
           this.recipeListService.setRecipes(recipes);
         })
       );
-  }
-
-  storeShoppingList() {
-    const recipes = this.shoppingListService.getIngredients();
-    this.http.put('https://j4f-portfolioapp.firebaseio.com/shoppingList.json', recipes)
-      .subscribe();
-  }
-
-  fetchShoppingList() {
-    this.http.get<Ingredient[]>('https://j4f-portfolioapp.firebaseio.com/shoppingList.json')
-      .subscribe(shoppingList => {
-        this.shoppingListService.setIngredients(shoppingList);
-      });
   }
 }
