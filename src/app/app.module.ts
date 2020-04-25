@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {StoreRouterConnectingModule} from '@ngrx/router-store';
 
 import {AppRoutingModule} from './app-routing/app-routing.module';
 
@@ -28,6 +29,7 @@ import {environment} from '../environments/environment';
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({logOnly: environment.production}),
+    StoreRouterConnectingModule.forRoot(),
     SharedModule
   ],
   providers: [
