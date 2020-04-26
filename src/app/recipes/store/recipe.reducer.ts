@@ -38,8 +38,8 @@ export function recipeReducer(state: State = initialState,
     case RecipeActions.DELETE_RECIPE:
       return {
         ...state,
-        recipes: state.recipes.filter((ig, igIndex) => {
-          return igIndex !== action.payload;
+        recipes: state.recipes.filter((rcp, index) => {
+          return index !== action.payload;
         })
       };
     default:

@@ -4,8 +4,9 @@ import {map, switchMap} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {Recipe} from '../model/recipe.model';
-import {RecipeListService} from '../services/recipe-list.service';
 import * as fromApp from '../../store/app.reducer';
+import * as RecipeActions from '../store/recipe.actions';
+import * as ShoppingListActions from '../../shopping-list/store/shopping-list.actions';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -18,8 +19,7 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
 
-  constructor(private recipeListService: RecipeListService,
-              private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
               private router: Router,
               private store: Store<fromApp.AppState>) {
   }
@@ -51,11 +51,11 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
 
   onToShoppingList() {
     const cloned = this.recipe.ingredients.map(x => Object.assign({}, x));
-    this.recipeListService.addIngredientsToShoppingList(cloned);
+    this.store.dispatch(new ShoppingListActions.AddIngredients(cloned));
   }
 
   onDeleteRecipe() {
-    this.recipeListService.deleteRecipe(this.currentId);
+    this.store.dispatch(new RecipeActions.DeleteRecipe(this.currentId));
     this.router.navigate(['/recipes'], {relativeTo: this.route});
   }
 }

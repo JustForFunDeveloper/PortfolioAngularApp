@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
-import {RecipeListService} from '../services/recipe-list.service';
-import * as fromApp from '../../store/app.reducer';
 import {Store} from '@ngrx/store';
 import {map} from 'rxjs/operators';
 import {Subscription} from 'rxjs';
+import * as fromApp from '../../store/app.reducer';
+import * as RecipeActions from '../store/recipe.actions';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -24,7 +24,6 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   }
 
   constructor(private route: ActivatedRoute,
-              private recipeListService: RecipeListService,
               private router: Router,
               private store: Store<fromApp.AppState>) {
   }
@@ -35,21 +34,22 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       this.editMode = params.id != null;
       this.initForm();
     });
-
-    this.recipeListService.recipesChanged.subscribe(() => {
-      this.initForm();
-    });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   onSubmit() {
     if (this.editMode) {
-      this.recipeListService.updateRecipe(this.currentId, this.recipeForm.value);
+      this.store.dispatch(new RecipeActions.UpdateRecipe({
+        recipe: this.recipeForm.value,
+        id: this.currentId
+      }));
     } else {
-      this.recipeListService.addRecipe(this.recipeForm.value);
+      this.store.dispatch(new RecipeActions.AddRecipe(this.recipeForm.value));
     }
     this.onCancel();
   }
@@ -78,7 +78,6 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
     const recipeIngredients = new FormArray([]);
 
     if (this.editMode) {
-      // const recipe = this.recipeListService.getRecipeById(this.currentId);
       this.subscription = this.store.select('recipe')
         .pipe(
           map(recipeState => {

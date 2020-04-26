@@ -22,9 +22,28 @@ export function shoppingListReducer(state: State = initialState,
         ingredients: [...state.ingredients, action.payload]
       };
     case ShoppingListActions.ADD_INGREDIENTS:
+      let currentIngredients: Ingredient[];
+      currentIngredients = [...state.ingredients];
+
+      let itemExists = false;
+      for (const newItem of action.payload) {
+        for (const index in currentIngredients) {
+          if (currentIngredients[index].name === newItem.name) {
+            currentIngredients[index] = new Ingredient(
+              currentIngredients[index].name,
+              currentIngredients[index].amount + newItem.amount);
+            itemExists = true;
+            break;
+          }
+        }
+        if (!itemExists) {
+          currentIngredients.push(newItem);
+        }
+        itemExists = false;
+      }
       return {
         ...state,
-        ingredients: [...state.ingredients, ...action.payload]
+        ingredients: [...currentIngredients]
       };
     case ShoppingListActions.UPDATE_INGREDIENT:
       const ingredient = state.ingredients[state.editedIngredientIndex];
